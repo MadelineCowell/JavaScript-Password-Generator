@@ -13,7 +13,7 @@ function criteriaNeeded() {
     var choiceLowerCase = confirm("Please press OK if you would like your password to include lower case letters?");
     var choiceNumbers = confirm("Please press OK if you would like your password to include numbers?");
     var choiceSpecial = confirm("Please press OK if you would like your password to include special characters?");
-  }
+  }  
   else {
     return
   }
