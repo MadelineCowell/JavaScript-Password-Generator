@@ -2,32 +2,27 @@
 var pwLength = 0;
 var upperCase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 var lowerCase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-var numeric = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 var special = ["!", "#", "$", "%", "&"]
 
 // Prompt user for pw criteria 
 function criteriaNeeded() {
   pwLength = parseInt(prompt("How long would you like your password to be? Please choose between 8-128 characters."));
   if (pwLength >= 8 || passwordLength <= 128) {
-    var UpperCase = confirm("Please press OK if you would like your password to include upper case letters.");
+    var choiceUpperCase = confirm("Please press OK if you would like your password to include upper case letters.");
     var choiceLowerCase = confirm("Please press OK if you would like your password to include lower case letters?");
     var choiceNumbers = confirm("Please press OK if you would like your password to include numbers?");
     var choiceSpecial = confirm("Please press OK if you would like your password to include special characters?");
   }  
-  else {
-    return
-  }
-  if (!UpperCase && !choiceLowerCase && !choiceNumbers && !choiceSpecial) {
+
+  if (!choiceUpperCase && !choiceLowerCase && !choiceNumbers && !choiceSpecial) {
     alert("Please choose at least one password criteria.");
   }
-  else {
-    return
-  }
+ 
 
   // Key value pairs
   var pwOptions = {
-
-    UpperCase: UpperCase,
+    choiceUpperCase: choiceUpperCase,
     choiceLowerCase: choiceLowerCase,
     choiceNumbers: choiceNumbers,
     choiceSpecial: choiceSpecial,
@@ -52,24 +47,26 @@ function generatePassword() {
   var guaranteedCharacters = [];
   var options = criteriaNeeded();
 
-  if (options.UpperCase) {
-    possibleCharacters = possibleCharacters.concat(UpperCase)
-    guaranteedCharacters.push(getRandom(UpperCase))
+  console.log(options)
+
+  if (options.choiceUpperCase) {
+    possibleCharacters = possibleCharacters.concat(upperCase)
+    guaranteedCharacters.push(getRandom(upperCase))
   }
 
   if (options.choiceLowerCase) {
-    possibleCharacters = possibleCharacters.concat(LowerCase)
-    guaranteedCharacters.push(getRandom(LowerCase))
+    possibleCharacters = possibleCharacters.concat(lowerCase)
+    guaranteedCharacters.push(getRandom(lowerCase))
   }
 
-  if (options.choiceNumbers) {
-    possibleCharacters = possibleCharacters.concat(Numbers)
-    guaranteedCharacters.push(getRandom(Numbers))
+  if (options.pwLength) {
+    possibleCharacters = possibleCharacters.concat(numbers)
+    guaranteedCharacters.push(getRandom(numbers))
   }
 
   if (options.choiceSpecial) {
-    possibleCharacters = possibleCharacters.concat(Special)
-    guaranteedCharacters.push(getRandom(Special))
+    possibleCharacters = possibleCharacters.concat(special)
+    guaranteedCharacters.push(getRandom(special))
   }
 
   for (var i = 0; i < options.pwLength; i++) {    
